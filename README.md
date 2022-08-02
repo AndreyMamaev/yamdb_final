@@ -56,4 +56,4 @@ Cоздать и активировать виртуальное окружен�
 
 ```http://127.0.0.1:8000/redoc/```
 
-![workflow](https://github.com/AndreyMamaev/yamdb_final/actions/workflows/yamdb_workflows/badge.svg)
+![workflow](https://github.com/AndreyMamaev/yamdb_final/actions/workflows/yamdb_workflows.yml/badge.svg)
