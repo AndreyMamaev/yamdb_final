@@ -83,7 +83,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-INTERNAL_IPS = ['127.0.0.1', 'localhost', '158.160.6.6']
+INTERNAL_IPS = ['127.0.0.1', 'localhost', '158.160.6.241']
 
 AUTH_USER_MODEL = 'users.User'
 
