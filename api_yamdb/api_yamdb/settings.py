@@ -5,7 +5,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.getenv('SECRET_KEY', default='testkey')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -83,7 +83,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-INTERNAL_IPS = ['127.0.0.1', 'localhost', '158.160.5.36']
+INTERNAL_IPS = ['127.0.0.1', 'localhost', '158.160.6.6']
 
 AUTH_USER_MODEL = 'users.User'
 
