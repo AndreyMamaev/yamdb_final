@@ -15,45 +15,107 @@
 
 - Django
 - Django DRF
-- SQLite
+- PostgreSQL
+- Docker
+- Nginx
 
 ## Как запустить проект
 
 Клонировать репозиторий и перейти в него в командной строке:
 
-```git clone git@github.com:Cooke64/api_yamdb.git```
+```git clone git@github.com:AndreyMamaev/yamdb_final.git```
 
-```cd api_yamdb```
+```cd infra```
 
-Cоздать и активировать виртуальное окружение:
+Создать файл .env, в котором необходимо создать переменные:
 
-```python -m venv env```
+- DB_ENGINE
+- DB_NAME
+- POSTGRES_USER
+- POSTGRES_PASSWORD
+- DB_HOST
+- DB_PORT
+- SECRET_KEY
 
-```venv/scripts/activate```
+Cоздать образ и контейнеры:
 
-```python -m pip install --upgrade pip```
+```docker-compose up```
 
-Установить зависимости из файла requirements.txt:
+```docker-compose exec web python manage.py migrate```
 
-```pip install -r requirements.txt```
+```docker-compose exec web python manage.py collectstatic --no-input```
 
-Выполнить миграции:
+Наполнить базу данными из файла с фикстурами:
 
-```python manage.py migrate```
+```docker-compose exec web python manage.py loaddata fixtures.json```
 
-Создать файл e.env, в котором необходимо создать переменные:
+## Примеры запросов к API
 
-- SOCIAL_AUTH_VK_OAUTH2_KEY
-- SOCIAL_AUTH_VK_OAUTH2_SECRET
-- EMAIL_HOST_USER
-- EMAIL_HOST_PASSWORD
+Запросы к API начинаются с ```/api/v1/```
 
-Запустить проект:
+1. Получить список всех объектов:
 
-```python manage.py runserver```
+Запрос:
+GET ```/api/v1/titles/```
 
-## Документация представлена [здесь]
+Ответ:
+```
+[
+    {
+        "count": 0, # Количество объектов
+        "next": "string", # Следующая страница
+        "previous": "string", # Предыдущая страница
+        "results": [] # Объекты
+    }
+]
+```
 
-```http://127.0.0.1:8000/redoc/```
+2. Получение информации о произведении:
+
+Запрос:
+GET ```/api/v1/titles/{titles_id}/```
+
+Ответ:
+```
+{
+    "id": 0,
+    "name": "string", # Название
+    "year": 0, # Год выхода
+    "rating": 0, # Оценка пользователей
+    "description": "string", # Описание
+    "genre": [
+        {} # Список жанров
+    ],
+    "category": { # Категории
+        "name": "string", # Название категории
+        "slug": "string" # Slug категории
+    }
+}
+```
+
+3. Добавление нового произведения:
+
+Запрос:
+POST ```/api/v1/titles/```
+```
+{
+    "name": "string",
+    "year": 0,
+    "description": "string",
+    "genre": [
+        "string"
+    ],
+    "category": "string"
+}
+```
+
+Ответ:
+Аналогично запросу GET ```/api/v1/titles/{titles_id}/```
+
+## Документация представлена [здесь](http://51.250.18.172/redoc/)
+
+## Авторы:
+
+Андрей Мамаев
 
 ![workflow](https://github.com/AndreyMamaev/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
