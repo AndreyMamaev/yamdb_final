@@ -1,5 +1,7 @@
 # Проект YaMDb
 
+![workflow](https://github.com/AndreyMamaev/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+
 ## Описание
 
 Данный проект представляет собой онлайн магазин,в котором реализованы следующие **возможности**:
@@ -117,5 +119,3 @@ POST ```/api/v1/titles/```
 ## Авторы:
 
 Андрей Мамаев
-
-![workflow](https://github.com/AndreyMamaev/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
